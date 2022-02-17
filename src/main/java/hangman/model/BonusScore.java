@@ -1,6 +1,7 @@
 package hangman.model;
 
 public class BonusScore implements GameScore{
+
     /**
      * @pre The game begins with 0 points
      * @pos bonus with 10 points for each correct word
@@ -10,8 +11,9 @@ public class BonusScore implements GameScore{
      * @return score of BonusScore
      */
     @Override
-    public int calculateScore(int correctCount, int incorrectCount) {
+    public int calculateScore(int correctCount, int incorrectCount){
         int bonusScore = 0;
+
         for (int i = 0; i < correctCount; i++) {
             bonusScore += 10;
         }
@@ -22,5 +24,10 @@ public class BonusScore implements GameScore{
             bonusScore = 0;
         }
         return bonusScore;
+    }
+
+    @Override
+    public int getInitialScore() {
+        return 0;
     }
 }

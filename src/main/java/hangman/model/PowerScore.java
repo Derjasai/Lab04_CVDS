@@ -9,14 +9,15 @@ public class PowerScore implements GameScore{
      * @return score of PowerScore
      */
     @Override
-    public int calculateScore(int correctCount, int incorrectCount) {
+    public int calculateScore(int correctCount, int incorrectCount){
         int powerScore = 0;
+
+
         for (int i = 1; i <= correctCount; i++) {
-            powerScore = powerScore + (5^i);
+            powerScore = (int) (powerScore + Math.pow(5,i));
         }
-        for (int i = 0; i < incorrectCount; i++) {
-            powerScore -= 8;
-        }
+        int penalty = incorrectCount * 8;
+        powerScore -= penalty;
         if(powerScore < 0){
             powerScore = 0;
         }
@@ -25,5 +26,10 @@ public class PowerScore implements GameScore{
         }
 
         return powerScore;
+    }
+
+    @Override
+    public int getInitialScore() {
+        return 100;
     }
 }
